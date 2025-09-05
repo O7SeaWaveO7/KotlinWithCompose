@@ -81,6 +81,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with: 
           gradle-version: '8.1' # Quotes required to prevent YAML converting to number
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
